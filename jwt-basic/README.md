@@ -1,4 +1,4 @@
-# JOB API
+# JWT BASIC
 
 Simple JWT basic for authentication
 
