@@ -1,69 +1,52 @@
-#### Setup
+# JOB API
 
-```bash
-npm install && npm start
-```
+An application for user to create, find and track jobs.
 
-#### Database Connection
+## Table of Contents
 
-1. Import connect.js
-2. Invoke in start()
-3. Setup .env in the root
-4. Add MONGO_URI with correct value
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Built With](#built-with)
+## Getting Started
 
-#### Routers
+These instructions will get you a copy of the project up and running on your local machine for development purposes.
 
-- auth.js
-- jobs.js
+### Prerequisites
 
-#### User Model
+Before you get started, you'll need to have the following tools and packages installed on your machine:
 
-Email Validation Regex
+- Node.js
+- npm
+- MongoDB
+- Git
 
-```regex
-/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-```
+### Installation
 
-#### Register User
+Here's how you can install and set up the project on your local machine:
 
-- Validate - name, email, password - with Mongoose
-- Hash Password (with bcryptjs)
-- Save User
-- Generate Token
-- Send Response with Token
+1. Clone the repository to your local machine using `git clone https://github.com/lhtrong/Node-Express-Course`
+2. Change into the project directory using `cd jobs-api`
+3. Install the dependencies by running `npm install`
+4. Set up a local MongoDB database and configure the connection string in a `.env` file
+5. Start the development server by running `npm start`
 
-#### Login User
+## Usage
 
-- Validate - email, password - in controller
-- If email or password is missing, throw BadRequestError
-- Find User
-- Compare Passwords
-- If no user or password does not match, throw UnauthenticatedError
-- If correct, generate Token
-- Send Response with Token
+The jobs api application allows you to:
 
-#### Mongoose Errors
+- Log in/sign up a user
+- Create job
+- Find job
+- Update job
+- ...
 
-- Validation Errors
-- Duplicate (Email)
-- Cast Error
+## Built With
 
-#### Security
+The project was built using the following tools and technologies:
 
-- helmet
-- cors
-- xss-clean
-- express-rate-limit
-
-Swagger UI
-
-```yaml
-/jobs/{id}:
-  parameters:
-    - in: path
-      name: id
-      schema:
-        type: string
-      required: true
-      description: the job id
-```
+- Node.js
+- Express
+- MongoDB
+- Mongoose
