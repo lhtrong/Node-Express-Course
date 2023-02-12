@@ -3,13 +3,10 @@ const { StatusCodes } = require('http-status-codes')
 const bcrypt = require('bcryptjs');
 const { BadRequestError, UnauthenticatedError } = require('../errors/index')
 const register = async(req, res) => {
-    try {
-        const user = await User.create({...req.body })
-        const token = await user.createJWT();
-        res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token: token });
-    } catch (error) {
-        res.json({ error: error })
-    }
+    const user = await User.create({...req.body })
+    const token = await user.createJWT();
+    res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token: token });
+
 
 };
 const login = async(req, res) => {
@@ -22,11 +19,9 @@ const login = async(req, res) => {
         throw new UnauthenticatedError('Invalid Credentials');
     }
     const isMatch = await user.comparePassword(password);
-    console.log(await user.comparePassword);
     if (!isMatch) {
         throw new UnauthenticatedError('Invalid Credentials');
     }
-    //Compare password
     const token = await user.createJWT();
     res.status(StatusCodes.CREATED).json({ user: { name: user.name }, token: token });
 
